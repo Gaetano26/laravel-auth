@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|unique:posts|max:150|min:3',
+            'image' => 'nullable|max:255',
+            'body' => 'nullable'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+
+            'title.required' => 'il titolo è obbligatorio',
+            'title.unique.posts' => 'questo titolo esiste già!',
+            'title.max' => 'Il titolo deve essere lungo massimo :max caratteri!',
+            'title.min' => 'Il titolo deve essere lungo almeno :min caratteri!',
+            'image.max' => 'La URL deve essere lungo massimo :max caratteri!'
         ];
     }
 }

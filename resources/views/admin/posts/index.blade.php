@@ -3,7 +3,7 @@
 @section('content')
     <h1>Index Post</h1>
     <div class="text-end">
-        <a class="btn btn-success" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
+        <a class="btn btn-success" href="{{ route('admin.posts.create') }}">Crea nuovo progetto</a>
     </div>
     @if (session()->has('message'))
         <div class="alert alert-success">
@@ -28,8 +28,8 @@
                     <td><img class="img-thumbnail" style="width:100px" src="{{ $post->image }}" alt="{{ $post->title }}">
                     </td>
                     <td>{{ $post->created_at }}</td>
-                    <td class="d-flex gap-2"><a href="{{ route('admin.posts.show', $post->slug) }}"><i class="fa-solid fa-eye"></i></a>
-                        <a href="{{ route('admin.posts.edit', $post->slug) }}"><i class="fa-solid fa-pencil"></i></a>
+                    <td class="d-flex gap-2"><a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary text-white"><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning text-white"><i class="fa-solid fa-pencil"></i></a>
                         <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
